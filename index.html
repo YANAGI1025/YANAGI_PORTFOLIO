@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>YANAGI.|PORTFOLIO</title>
+  <title>YANAGI. | Portfolio</title>
   <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -18,15 +18,15 @@
           <div class="avatar"><img src="img/icon1.png" alt="icon"></div>
           <div class="avatar2"><img src="img/icon2.png" alt="icon"></div>
           <nav class="socials">
-            <a class="sns-btn" href="https://x.com/_YANAGI_10_" id="snsX" target="_blank">X(雑多)</a>
-            <a class="sns-btn" href="https://x.com/_ya_dev_" id="snsIG" target="_blank">X(ゲーム制作)</a>
+            <a class="sns-btn" href="https://x.com/_YANAGI_10_" id="snsX" target="_blank">X (雑多)</a>
+            <a class="sns-btn" href="https://x.com/_ya_dev_" id="snsIG" target="_blank">X (dev)</a>
           </nav>
         </div>
       </div>
       <div class="profile-meta">
         <div class="name-line">
           <h1 id="displayName">栁。/ YANAGI.</h1>
-          <span class="username" id="username">@_ya_1025_　@_ya_dev_</span>
+          <span class="username" id="username">@_YANAGI_10_　@_ya_dev_</span>
         </div>
         <ul class="info-line">
           <li><span>誕生日</span><strong id="birthday">10 / 25</strong></li>
@@ -72,6 +72,105 @@
 
     <footer>©willsident.com</footer>
   </div>
+
+<div class="game-detail-modal" id="gameDetailModal" aria-hidden="true">
+  <div
+    class="game-detail-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="gameDetailTitle"
+  >
+
+    <button
+      class="game-detail-close"
+      id="gameDetailClose"
+      aria-label="閉じる"
+    >
+      ✕
+    </button>
+
+    <div class="game-detail-hero">
+      <img
+        id="gameDetailBgImage"
+        class="game-detail-bg"
+        alt=""
+        aria-hidden="true"
+      >
+
+      <img
+        id="gameDetailImage"
+        class="game-detail-main-image"
+        alt=""
+      >
+    </div>
+
+    <div class="game-detail-heading">
+      <p class="game-detail-kicker" id="gameDetailKicker"></p>
+
+      <h2 id="gameDetailTitle"></h2>
+    </div>
+
+    <div class="game-detail-layout">
+
+      <section class="game-detail-main">
+
+        <div class="game-detail-block">
+
+          <div class="game-detail-label">
+            <span>ABOUT</span>
+            <i></i>
+          </div>
+
+          <p id="gameDetailDescription"></p>
+
+        </div>
+
+        <div
+          class="game-detail-block game-detail-events"
+          id="gameDetailEvents"
+        ></div>
+
+      </section>
+
+      <aside class="game-detail-side">
+
+        <div class="game-detail-info-card">
+          <span>期間</span>
+          <strong id="gameDetailPeriod"></strong>
+        </div>
+
+        <div class="game-detail-info-card">
+          <span>担当</span>
+          <strong id="gameDetailRole"></strong>
+        </div>
+
+        <div class="game-detail-info-card">
+          <span>使用技術</span>
+          <strong id="gameDetailEngine"></strong>
+        </div>
+
+        <div class="game-detail-info-card">
+          <span>ジャンル</span>
+          <strong id="gameDetailGenre"></strong>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <div class="game-detail-footer">
+
+      <div class="game-detail-footer-line"></div>
+
+      <div
+        class="game-detail-play"
+        id="gameDetailPlay"
+      ></div>
+
+    </div>
+
+  </div>
+</div>
 
   <!-- Modal -->
   <div class="modal" id="modal">
@@ -269,166 +368,403 @@
   <script>
     const GAME_PROJECTS = [
       {
-        title: 'タイトル',
-        image: 'img/game-placeholder.png',
-        period: '2026',
-        genre: '2D / Multiplayer',
-        engine: 'Unity',
-        description: 'ゲームの概要',
+        title: 'Born Bone Boom!',
+        image: 'img/Game/bbb.png',
+        period: '2026.08',
+        genre: 'パーティー',
+        engine: 'Unity (PUN2)',
+        description: '頭・胴・おケツのホネを組み合わせ、\nヘンテコな生き物を復元する対戦パーティーゲーム！！！',
         role: '企画・プログラム・UI',
         links: [
-          { label: '詳細を見る', url: '#' }
+          { label: 'ゲームをプレイ', url: '#' ,enabled: false}
         ]
       },
       {
-        title: 'タイトル',
-        image: 'img/game-placeholder.png',
-        period: '2026',
-        genre: '2D / Multiplayer',
+        title: 'キャンバスぬりつぶしろ！',
+        image: 'img/Game/shiro.png',
+        period: '2026.08',
+        genre: '2Dアクション',
         engine: 'Unity',
-        description: 'ゲームの概要',
+        description: 'ある日、真っ白になってしまった世界。\n目の前に広がる白い世界を自分色に塗りつぶ”しろ”！！！',
         role: '企画・プログラム・UI',
         links: [
-          { label: '詳細を見る', url: '#' }
+          { label: 'ゲームをプレイ', url: 'https://unityroom.com/games/nuritsubushiro' }
+        ]
+      },
+      {
+        title: 'らーめん裏飯家',
+        image: 'img/Game/ura.png',
+        period: '2026.03',
+        genre: 'スコアアタック',
+        engine: 'Unity',
+        description: '特に怪しいわけでもないラーメン店に迷い込んだあなた。\n注文は“正しく”、“速く”組み立てろ！！！',
+        role: '大将・企画・プログラム・デザイン',
+        links: [
+          { label: 'ゲームをプレイ', url: 'https://unityroom.com/games/urameshiya' }
         ]
       }
     ];
 
-    function renderGames() {
-      const container = document.getElementById('gameGallery');
+    const gameGallery = document.getElementById('gameGallery');
+    const gameDetailModal = document.getElementById('gameDetailModal');
+    const gameDetailClose = document.getElementById('gameDetailClose');
+    const gameDetailImage = document.getElementById('gameDetailImage');
+    const gameDetailBgImage = document.getElementById('gameDetailBgImage');
+    const gameDetailTitle = document.getElementById('gameDetailTitle');
+    const gameDetailPeriod = document.getElementById('gameDetailPeriod');
+    const gameDetailMeta = document.getElementById('gameDetailMeta');
+    const gameDetailDescription = document.getElementById('gameDetailDescription');
+    const gameDetailRole = document.getElementById('gameDetailRole');
+    const gameDetailLinks = document.getElementById('gameDetailLinks');
+    const gameDetailKicker = document.getElementById('gameDetailKicker');
+    const gameDetailTags = document.getElementById('gameDetailTags');
 
-      container.innerHTML = GAME_PROJECTS.map(game => `
-        <article class="game-card">
-          <div class="game-image">
-            <img src="${game.image}" alt="${game.title}" loading="lazy">
-          </div>
+function openGameDetail(game) {
+  gameDetailBgImage.src = game.image;
+  gameDetailImage.src = game.image;
+  gameDetailBgImage.alt = '';
+  gameDetailImage.alt = game.title;
 
-          <div class="game-content">
-            <p class="game-period">${game.period}</p>
-            <h2>${game.title}</h2>
+  gameDetailKicker.textContent =
+    game.period || 'GAME PROJECT';
 
-            <div class="game-meta">
-              <span>${game.genre}</span>
-              <span>${game.engine}</span>
-            </div>
+  gameDetailTitle.textContent =
+    game.title;
 
-            <p class="game-description">${game.description}</p>
-            <p class="game-role"><strong>担当：</strong>${game.role}</p>
+if (gameDetailTags) {
+  gameDetailTags.innerHTML = '';
+    [game.engine, game.genre].filter(Boolean).forEach(value => {
+      const tag = document.createElement('span');
+      tag.textContent = value;
+      gameDetailTags.appendChild(tag);
+    });
+}
 
-            <div class="game-links">
-              ${game.links.map(link =>
-                `<a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.label}</a>`
-              ).join('')}
-            </div>
-          </div>
-        </article>
-      `).join('');
-    }
+  gameDetailPeriod.textContent =
+    game.period || '—';
+
+  gameDetailRole.textContent =
+    game.role || '—';
+
+  gameDetailEngine.textContent =
+    game.engine || '—';
+
+  gameDetailGenre.textContent =
+    game.genre || '—';
+
+  gameDetailDescription.textContent =
+    game.description || '—';
+
+  gameDetailEvents.innerHTML = '';
+
+  if (
+    game.events &&
+    game.events.length > 0
+  ) {
+    const label =
+      document.createElement('div');
+
+    label.className =
+      'game-detail-label';
+
+    label.innerHTML =
+      '<span>EVENTS</span><i></i>';
+
+    const heading =
+      document.createElement('h3');
+
+    heading.textContent =
+      '出展・イベント';
+
+    const list =
+      document.createElement('ul');
+
+    game.events.forEach(eventText => {
+      const item =
+        document.createElement('li');
+
+      item.textContent =
+        eventText;
+
+      list.appendChild(item);
+    });
+
+    gameDetailEvents.append(
+      label,
+      heading,
+      list
+    );
+  }
+
+gameDetailPlay.innerHTML = '';
+
+(game.links || []).forEach(link => {
+  const anchor = document.createElement('a');
+
+  anchor.className = 'game-play-button';
+
+  anchor.textContent = link.label;
+
+  if (link.enabled === false) {
+    anchor.classList.add('disabled');
+    anchor.setAttribute('aria-disabled', 'true');
+
+    anchor.addEventListener('click', event => {
+      event.preventDefault();
+    });
+
+    return gameDetailPlay.appendChild(anchor);
+  }
+
+  anchor.href = link.url;
+  anchor.target = '_blank';
+  anchor.rel = 'noopener noreferrer';
+
+  gameDetailPlay.appendChild(anchor);
+});
+
+  gameDetailModal.classList.add('open');
+
+  gameDetailModal.setAttribute(
+    'aria-hidden',
+    'false'
+  );
+
+  document.body.classList.add(
+    'modal-open'
+  );
+
+  gameDetailClose.focus();
+}
+
+function closeGameDetail() {
+  gameDetailModal.classList.remove('open');
+  gameDetailModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+}
+
+function renderGames() {
+  gameGallery.innerHTML = '';
+
+  GAME_PROJECTS.forEach(game => {
+    const card = document.createElement('article');
+
+    card.className = 'game-card';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `${game.title}の詳細を見る`);
+
+    card.innerHTML = `
+      <div class="game-image">
+        <img src="${game.image}" alt="${game.title}" loading="lazy">
+      </div>
+
+      <div class="game-card-content">
+        <p class="game-period">${game.period}</p>
+        <h2>${game.title}</h2>
+
+        <div class="game-card-meta">
+          <span>${game.engine}</span>
+          <span>${game.genre}</span>
+        </div>
+      </div>
+    `;
+
+    card.addEventListener('click', () => {
+      openGameDetail(game);
+    });
+
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openGameDetail(game);
+      }
+    });
+
+    gameGallery.appendChild(card);
+  });
+}
+    gameDetailClose.addEventListener('click', closeGameDetail);
+
+    gameDetailModal.addEventListener('click', event => {
+      if (event.target === gameDetailModal) {
+        closeGameDetail();
+      }
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && gameDetailModal.classList.contains('open')) {
+        closeGameDetail();
+      }
+    });
 
     renderGames();
   </script>
-  <script>
-  // ======== 掲示板（TEST.html の機能を移植） ========
+
+<script>
   let boardInited = false;
-  async function initBoardOnce(){
+  async function initBoardOnce() {
     if (boardInited) return;
     boardInited = true;
 
-    // Firebase SDK を動的ロード（TEST.html と同等のバージョン）:contentReference[oaicite:6]{index=6}
-    const [{ initializeApp }, { getFirestore, collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc, getDoc, setDoc }, { getAuth, signInAnonymously, onAuthStateChanged }] =
-      await Promise.all([
-        import("https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js"),
-        import("https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js"),
-        import("https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js")
-      ]);
+    try {
+      const { initializeApp } =
+        await import("https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js");
+      const { getFirestore, collection, addDoc, query, orderBy,
+        onSnapshot, deleteDoc, doc, getDoc, setDoc, serverTimestamp } =
+        await import("https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js");
+      const {getAuth, signInAnonymously, onAuthStateChanged } =
+        await import("https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js");
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDu7kx3msV9CvOzxD9ilKmWfzkT3YHFcMg",
-      authDomain: "willsident-pj.firebaseapp.com",
-      projectId: "willsident-pj",
-      storageBucket: "willsident-pj.firebasestorage.app",
-      messagingSenderId: "791017364363",
-      appId: "1:791017364363:web:b2f1408377544c4de6ed8e"
-    }; // :contentReference[oaicite:7]{index=7}
-
-    const app = initializeApp(firebaseConfig);
-    const db  = getFirestore(app);
-    const auth = getAuth(app);
-
-    const form = document.getElementById('b-form');
-    const nameI = document.getElementById('b-name');
-    const msgI  = document.getElementById('b-msg');
-    const list  = document.getElementById('b-list');
-
-    let uid = null;
-
-    // 匿名サインイン & 以降のロジック（TEST.html を踏襲）:contentReference[oaicite:8]{index=8}
-    signInAnonymously(auth);
-    onAuthStateChanged(auth, user => {
-      if (!user) return;
-      uid = user.uid;
-
-      form.onsubmit = async (e) => {
-        e.preventDefault();
-        if (!nameI.value.trim() || !msgI.value.trim()) return;
-        await addDoc(collection(db, "comments"), {
-          name: nameI.value.trim().slice(0, 30),
-          message: msgI.value.trim().slice(0, 1000),
-          timestamp: new Date(),
-          uid: uid
-        });
-        nameI.value = "";
-        msgI.value = "";
+      const firebaseConfig = {
+        apiKey: "AIzaSyDu7kx3msV9CvOzxD9ilKmWfzkT3YHFcMg",
+        authDomain: "willsident-pj.firebaseapp.com",
+        projectId: "willsident-pj",
+        storageBucket: "willsident-pj.firebasestorage.app",
+        messagingSenderId: "791017364363",
+        appId: "1:791017364363:web:b2f1408377544c4de6ed8e"
       };
 
-      const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
-      onSnapshot(q, snap => {
-        list.innerHTML = "";
-        snap.forEach(d => {
-          const c = d.data(), id = d.id;
-          const li = document.createElement("li");
-          const date = c.timestamp.toDate().toLocaleString("ja-JP");
-          const likesCol = collection(db, "comments", id, "likes");
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const auth = getAuth(app);
 
-          li.innerHTML = `
-            <div><span class="name">${c.name}</span><span class="date">${date}</span></div>
-            <div class="message">${c.message}</div>
-            ${uid === c.uid ? `<button class="delete-btn" data-id="${id}">削除</button>` : ""}
-            <span class="likes" data-id="${id}">♡ ...</span>
-          `;
-          list.appendChild(li);
+      const form = document.getElementById("b-form");
+      const nameInput = document.getElementById("b-name");
+      const messageInput = document.getElementById("b-msg");
+      const list = document.getElementById("b-list");
 
-          onSnapshot(likesCol, async (likeSnap) => {
-            const likeCount = likeSnap.size;
-            const likeDoc = await getDoc(doc(likesCol, uid));
-            const liked = likeDoc.exists();
-            const likesSpan = li.querySelector(".likes");
-            likesSpan.innerHTML = `
-              <button class="like-btn ${liked ? 'liked' : ''}" data-id="${id}" data-liked="${liked}">
-                ▲ ${likeCount}
-              </button>
-            `;
-            likesSpan.querySelector(".like-btn").onclick = async () => {
-              const likeRef = doc(db, "comments", id, "likes", uid);
-              if (liked) await deleteDoc(likeRef);
-              else await setDoc(likeRef, { liked: true });
-            };
-          });
-        });
+      let uid = null;
 
-        // 削除
-        list.querySelectorAll(".delete-btn").forEach(b => {
-          b.onclick = () => {
-            const id = b.dataset.id;
-            deleteDoc(doc(db, "comments", id));
-          };
-        });
+      await signInAnonymously(auth);
+
+      onAuthStateChanged(auth, user => {
+        if (!user) return;
+
+        uid = user.uid;
+
+        form.onsubmit = async event => {
+          event.preventDefault();
+
+          const name = nameInput.value.trim();
+          const message = messageInput.value.trim();
+
+          if (!name || !message) return;
+
+          try {
+            await addDoc(collection(db, "comments"), {
+              name: name.slice(0, 30),
+              message: message.slice(0, 1000),
+              timestamp: serverTimestamp(),
+              uid: uid
+            });
+            form.reset();
+
+          } catch (error) {
+            console.error("書き込みエラー:", error);
+          }
+        };
+
+        const commentsQuery = query(collection(db, "comments"), orderBy("timestamp", "desc"));
+
+        onSnapshot(commentsQuery, snap => {
+            list.innerHTML = "";
+
+            snap.forEach(commentDoc => {
+              const data = commentDoc.data();
+              const id = commentDoc.id;
+
+              const li = document.createElement("li");
+              const header = document.createElement("div");
+              const name = document.createElement("span");
+              name.className = "name";
+              name.textContent = data.name || "名無し";
+              const date = document.createElement("span");
+              date.className = "date";
+
+              if (data.timestamp && typeof data.timestamp.toDate === "function")
+                date.textContent = data.timestamp.toDate().toLocaleString("ja-JP");
+              else
+                date.textContent = "now";
+
+              header.append(name, date);
+
+              const message = document.createElement("div");
+              message.className = "message";
+              message.textContent = data.message || "";
+
+              li.append(header, message);
+
+              if (uid === data.uid) {
+                const deleteButton = document.createElement("button");
+
+                deleteButton.className = "delete-btn";
+                deleteButton.textContent = "削除";
+
+                deleteButton.addEventListener("click", async () => {
+                  try {
+                    await deleteDoc(doc(db, "comments", id));
+                  } catch (error) {
+                    console.error("削除エラー:", error);
+                    alert("削除に失敗しました。\n" + error.message);
+                  }
+                });
+
+                li.appendChild(deleteButton);
+              }
+
+              const likesArea = document.createElement("span");
+              likesArea.className = "likes";
+
+              li.appendChild(likesArea);
+              list.appendChild(li);
+
+              const likesCollection = collection(db, "comments", id, "likes");
+
+              onSnapshot(likesCollection, async likeSnap => {
+                const likeCount = likeSnap.size;
+                const likeDoc = await getDoc(doc(likesCollection, uid));
+
+                likesArea.innerHTML = "";
+                const likeButton = document.createElement("button");
+
+                likeButton.className = "like-btn" + (likeDoc.exists() ? " liked" : "");
+                likeButton.textContent = `▲ ${likeCount}`;
+                likeButton.addEventListener(
+                  "click",
+                  async () => {
+                    const likeRef = doc(db, "comments", id, "likes", uid);
+                    try {
+                      if (likeDoc.exists())
+                        await deleteDoc(likeRef);
+                      else
+                        await setDoc(likeRef, {liked: true});
+                    } catch (error) {
+                      console.error("いいねエラー:", error);
+                      alert("いいねに失敗しました。\n" + error.message);
+                    }
+                  }
+                );
+                likesArea.appendChild(likeButton);
+              });
+            })
+          },
+          error => {
+            console.error("掲示板読み込みエラー:", error);
+            list.innerHTML = "";
+            const li = document.createElement("li");
+            li.className = "empty-message";
+            li.textContent = "掲示板を読み込めませんでした。\n" + error.message;
+            list.appendChild(li);
+          }
+        );
       });
-    });
+    } catch (error) {
+      console.error("掲示板初期化エラー:",error);
+      boardInited = false;
+      alert("掲示板を初期化できませんでした。\n\n" + error.message);
+    }
   }
-
-  // ページ初期表示を「イラスト」タブにしている場合は、掲示板は未ロードのまま。
-  // ページを軽く保てます:contentReference[oaicite:9]{index=9}。
 </script>
 
 </body>
