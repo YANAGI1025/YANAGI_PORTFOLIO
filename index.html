@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>栁。と申します</title>
+  <title>YANAGI.|PORTFOLIO</title>
   <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -15,38 +15,31 @@
     <header class="profile-header">
       <div class="banner" id="banner">
         <div class="header-overlay">
-          <div class="avatar"><img src="img/icon.png" alt="icon"></div>
+          <div class="avatar"><img src="img/icon1.png" alt="icon"></div>
+          <div class="avatar2"><img src="img/icon2.png" alt="icon"></div>
           <nav class="socials">
-            <a class="sns-btn" href="https://x.com/_ya_1025_" id="snsX" target="_blank">X</a>
-            <a class="sns-btn" href="https://instagram.com/_ya_1025_" id="snsIG" target="_blank">Instagram</a>
-            <a class="sns-btn" href="https://t.co/DRfJFcIgiJ" id="snsSkeb" target="_blank">Skeb</a>
-            <a class="sns-btn" href="https://t.co/2CRviDmInW" id="snsMarsh" target="_blank">マシュマロ</a>
+            <a class="sns-btn" href="https://x.com/_YANAGI_10_" id="snsX" target="_blank">X(雑多)</a>
+            <a class="sns-btn" href="https://x.com/_ya_dev_" id="snsIG" target="_blank">X(ゲーム制作)</a>
           </nav>
         </div>
       </div>
       <div class="profile-meta">
         <div class="name-line">
-          <h1 id="displayName">栁。</h1>
-          <span class="username" id="username">@_ya_1025_</span>
+          <h1 id="displayName">栁。/ YANAGI.</h1>
+          <span class="username" id="username">@_ya_1025_　@_ya_dev_</span>
         </div>
         <ul class="info-line">
-          <li><span>誕生日</span><strong id="birthday">10月25日</strong></li>
-          <li><span>絵描き歴</span><strong id="years">5年</strong></li>
-          <li><span>FAタグ</span><strong id="faTag"><a href="https://twitter.com/hashtag/ΔScopeFA" target="_blank">#ΔScopeFA</a></strong></li>
+          <li><span>誕生日</span><strong id="birthday">10 / 25</strong></li>
         </ul>
       </div>
        <div class="bio">
-        <p>
-          マシュマロをください！！
-
-          無断転載・無断使用・AI学習✖︎
-
+        <p>作りたいものを作ります。 ¦ 無断転載・無断使用・AI学習✖︎
         </p>
       </div>
     </header>
     <div class="tabs">
   <button class="tab-btn active" data-tab="illust">イラスト</button>
-  <button class="tab-btn" data-tab="other1">創作(まだ)</button>
+  <button class="tab-btn" data-tab="games">ゲーム制作</button>
   <button class="tab-btn" data-tab="board">匿名掲示板</button>
 </div>
 <main>
@@ -57,8 +50,8 @@
     <div class="grid" id="gallery"></div>
   </div>
 
-  <div id="tab-other1" class="tab-content">
-    <p style="color:var(--muted)">コンテンツ未定です。</p>
+  <div id="tab-games" class="tab-content">
+    <div class="game-grid" id="gameGallery"></div>
   </div>
   <div id="tab-board" class="tab-content">
     <section class="board">
@@ -111,7 +104,7 @@
   <script src="js/illstdata.js"></script>
   <script>
     let filtered = ARTWORKS.slice();
-    let activeTags = new Set();
+    let activeTag = 'すべて';
     let currentIndex = -1;
 
     const gallery = document.getElementById('gallery');
@@ -127,120 +120,214 @@
     const closeBtn = document.getElementById('closeBtn');
     const pagerText = document.getElementById('pagerText');
 
-    function renderTagButtons(){
-      tagButtons.innerHTML='';
-      const allBtn = document.createElement('button');
-      allBtn.className = 'tag-btn all' + (activeTags.size===0?' active':'');
-      allBtn.textContent = 'すべて';
-      allBtn.addEventListener('click',()=>{ activeTags.clear(); applyFilters(); renderTagButtons(); });
-      tagButtons.appendChild(allBtn);
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-      getAllTags().forEach(t=>{
-        const btn = document.createElement('button');
-        btn.className = 'tag-btn' + (activeTags.has(t)?' active':'');
-        btn.dataset.tag = t;
-        btn.textContent = t;
-        btn.addEventListener('click',()=>{
-          if(activeTags.has(t)) activeTags.delete(t); else activeTags.add(t);
-          applyFilters(); renderTagButtons();
+    function renderTagButtons() {
+      tagButtons.innerHTML = '';
+
+      getAllTags().forEach(tag => {
+        const button = document.createElement('button');
+
+        button.className = 'tag-btn' + (activeTag === tag ? ' active' : '');
+        button.dataset.tag = tag;
+        button.textContent = tag;
+
+        button.addEventListener('click', () => {
+          activeTag = tag;
+          applyFilters();
+          renderTagButtons();
         });
-        tagButtons.appendChild(btn);
+
+        tagButtons.appendChild(button);
       });
     }
 
-    function applyFilters(){
-      filtered = ARTWORKS.filter(a=>{
-        if(activeTags.size>0){ for(const t of activeTags){ if(!a.tags.includes(t)) return false; } }
-        return true;
-      });
+    function applyFilters() {
+      filtered = activeTag === 'すべて'
+        ? ARTWORKS.slice()
+        : ARTWORKS.filter(art => art.tags.includes(activeTag));
+
       renderGallery();
     }
 
-    function renderGallery(){
-      gallery.innerHTML='';
-      if(filtered.length===0){ gallery.innerHTML = '<p style="color:var(--muted)">該当する作品がありません。</p>'; return }
-      filtered.forEach((a,idx)=>{
+    function renderGallery() {
+      gallery.innerHTML = '';
+
+      if (filtered.length === 0) {
+        gallery.innerHTML = '<p class="empty-message">該当する作品がありません。</p>';
+        return;
+      }
+
+      filtered.forEach((art, index) => {
         const card = document.createElement('article');
-        card.className='card';
+
+        card.className = 'card';
+        card.tabIndex = 0;
+
         card.innerHTML = `
-          <div class="thumb"><img loading="lazy" src="${a.img}" alt="${a.title}"></div>
+          <div class="thumb">
+            <img loading="lazy" src="${art.img}" alt="${art.title}">
+          </div>
           <div class="card-body">
             <div class="card-header-line">
-              <h3 class="card-title">${a.title}</h3>
-              <div class="card-tags">${(a.tags||[]).map(t=>`<span class=\"pill\" data-tag=\"${t}\">${t}</span>`).join('')}</div>
+              <h3 class="card-title">${art.title}</h3>
+              <div class="card-tags">
+                ${(art.tags || []).map(tag =>
+                  `<span class="pill" data-tag="${tag}">${tag}</span>`
+                ).join('')}
+              </div>
             </div>
-          </div>`;
-        card.addEventListener('click',()=>openModal(idx));
-        card.addEventListener('keydown',(e)=>{ if(e.key==='Enter') openModal(idx); });
+          </div>
+        `;
+
+        card.addEventListener('click', () => openModal(index));
+
+        card.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openModal(index);
+          }
+        });
+
         gallery.appendChild(card);
       });
     }
 
-    function openModal(idx){
-      currentIndex = idx;
+    function openModal(index) {
+      currentIndex = index;
       const art = filtered[currentIndex];
-      if(!art) return;
+
+      if (!art) return;
+
       modalImg.src = art.img;
+      modalImg.alt = art.title;
       modalTitle.textContent = art.title;
       modalDesc.textContent = art.desc || '';
       modalDate.textContent = '製作: ' + (art.date || '');
-      modalTags.innerHTML = (art.tags||[]).map(t=>`<span class="pill" data-tag="${t}">${t}</span>`).join('');
-      pagerText.textContent = `${filtered.indexOf(art)+1} / ${filtered.length}`;
+      modalTags.innerHTML = (art.tags || []).map(tag =>
+        `<span class="pill" data-tag="${tag}">${tag}</span>`
+      ).join('');
+      pagerText.textContent = `${currentIndex + 1} / ${filtered.length}`;
+
       modal.classList.add('open');
+      document.body.classList.add('modal-open');
       closeBtn.focus();
     }
-    function closeModal(){ modal.classList.remove('open'); currentIndex=-1; }
-    function showNext(){ if(filtered.length===0) return; currentIndex = (currentIndex+1)%filtered.length; openModal(currentIndex); }
-    function showPrev(){ if(filtered.length===0) return; currentIndex = (currentIndex-1+filtered.length)%filtered.length; openModal(currentIndex); }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      currentIndex = -1;
+    }
+
+    function showNext() {
+      if (!filtered.length) return;
+      currentIndex = (currentIndex + 1) % filtered.length;
+      openModal(currentIndex);
+    }
+
+    function showPrev() {
+      if (!filtered.length) return;
+      currentIndex = (currentIndex - 1 + filtered.length) % filtered.length;
+      openModal(currentIndex);
+    }
 
     closeBtn.addEventListener('click', closeModal);
     nextBtn.addEventListener('click', showNext);
     prevBtn.addEventListener('click', showPrev);
-    modal.addEventListener('click',(e)=>{ if(e.target===modal) closeModal(); });
-    document.addEventListener('keydown',(e)=>{
-      if(e.key==='Escape') closeModal();
-      if(modal.classList.contains('open')){
-        if(e.key==='ArrowRight') showNext();
-        if(e.key==='ArrowLeft') showPrev();
-      }
+
+    modal.addEventListener('click', event => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (!modal.classList.contains('open')) return;
+
+      if (event.key === 'Escape') closeModal();
+      if (event.key === 'ArrowRight') showNext();
+      if (event.key === 'ArrowLeft') showPrev();
+    });
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', async () => {
+        tabButtons.forEach(item => item.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        document.getElementById('tab-' + button.dataset.tab).classList.add('active');
+
+        if (button.dataset.tab === 'board') {
+          await initBoardOnce();
+        }
+      });
     });
 
     renderTagButtons();
     applyFilters();
-
-    // タブ切り替え処理
-const tabButtons = document.querySelectorAll('.tab-btn');
-const tabContents = document.querySelectorAll('.tab-content');
-
-tabButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // ボタンの active 切替
-    tabButtons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    // コンテンツの active 切替
-    tabContents.forEach(c => c.classList.remove('active'));
-    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-  });
-});
   </script>
   <script>
-  // ======== タブ切替（既存に追記） ========
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', async () => {
-      tabButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      tabContents.forEach(c => c.classList.remove('active'));
-      const activeId = 'tab-' + btn.dataset.tab;
-      document.getElementById(activeId).classList.add('active');
-
-      // ★ 掲示板タブが初めて開かれたら初期化
-      if (btn.dataset.tab === 'board') {
-        await initBoardOnce();
+    const GAME_PROJECTS = [
+      {
+        title: 'タイトル',
+        image: 'img/game-placeholder.png',
+        period: '2026',
+        genre: '2D / Multiplayer',
+        engine: 'Unity',
+        description: 'ゲームの概要',
+        role: '企画・プログラム・UI',
+        links: [
+          { label: '詳細を見る', url: '#' }
+        ]
+      },
+      {
+        title: 'タイトル',
+        image: 'img/game-placeholder.png',
+        period: '2026',
+        genre: '2D / Multiplayer',
+        engine: 'Unity',
+        description: 'ゲームの概要',
+        role: '企画・プログラム・UI',
+        links: [
+          { label: '詳細を見る', url: '#' }
+        ]
       }
-    });
-  });
+    ];
 
+    function renderGames() {
+      const container = document.getElementById('gameGallery');
+
+      container.innerHTML = GAME_PROJECTS.map(game => `
+        <article class="game-card">
+          <div class="game-image">
+            <img src="${game.image}" alt="${game.title}" loading="lazy">
+          </div>
+
+          <div class="game-content">
+            <p class="game-period">${game.period}</p>
+            <h2>${game.title}</h2>
+
+            <div class="game-meta">
+              <span>${game.genre}</span>
+              <span>${game.engine}</span>
+            </div>
+
+            <p class="game-description">${game.description}</p>
+            <p class="game-role"><strong>担当：</strong>${game.role}</p>
+
+            <div class="game-links">
+              ${game.links.map(link =>
+                `<a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.label}</a>`
+              ).join('')}
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    renderGames();
+  </script>
+  <script>
   // ======== 掲示板（TEST.html の機能を移植） ========
   let boardInited = false;
   async function initBoardOnce(){
@@ -283,10 +370,10 @@ tabButtons.forEach(btn => {
 
       form.onsubmit = async (e) => {
         e.preventDefault();
-        if (!nameI.value || !msgI.value) return;
+        if (!nameI.value.trim() || !msgI.value.trim()) return;
         await addDoc(collection(db, "comments"), {
-          name: nameI.value,
-          message: msgI.value,
+          name: nameI.value.trim().slice(0, 30),
+          message: msgI.value.trim().slice(0, 1000),
           timestamp: new Date(),
           uid: uid
         });
