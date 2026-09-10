@@ -508,29 +508,45 @@ a {
 
 .board-list li {
   position: relative;
-  padding: 12px;
-  margin-bottom: 10px;
+  overflow: hidden;
+
+  margin-bottom: 12px;
+
   background: var(--panel);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   box-shadow: var(--shadow);
 }
 
+.board-list li > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 14px;
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
 .board-list .name {
   font-weight: 700;
+  color: #e6eef6;
 }
 
 .board-list .date {
-  margin-left: 8px;
   color: var(--muted);
   font-size: 12px;
 }
 
 .board-list .message {
-  margin-top: 6px;
+  margin: 0;
+  padding: 14px 65px 14px 20px;
+
   color: #e6eef6;
-  line-height: 1.6;
+  line-height: 1.7;
+
   white-space: pre-wrap;
+  word-break: break-word;
   overflow-wrap: anywhere;
 }
 
@@ -567,6 +583,17 @@ a {
   cursor: pointer;
   font-size: 12px;
 }
+
+.message a {
+  color: #ffdb3b;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.message a:hover {
+  color: #fff3bb;
+}
+
 
 .modal {
   position: fixed;

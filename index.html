@@ -60,7 +60,7 @@
         <hr>
         <textarea id="b-msg" placeholder="なんか書いて"></textarea>
         <div class="submit-wrapper">
-          <button type="submit">ATTACK</button>
+          <button type="submit">PUSH!</button>
         </div>
       </form>
       <ul id="b-list" class="board-list"></ul>
@@ -691,7 +691,37 @@ function renderGames() {
 
               const message = document.createElement("div");
               message.className = "message";
-              message.textContent = data.message || "";
+
+              const text = data.message || "";
+
+              const urlPattern = /(https?:\/\/[^\s]+)/g;
+
+              let lastIndex = 0;
+              let match;
+
+              while ((match = urlPattern.exec(text)) !== null) {
+                const beforeText = text.slice(lastIndex, match.index);
+
+                if (beforeText) {
+                  message.appendChild(document.createTextNode(beforeText));
+                }
+
+                const link = document.createElement("a");
+                link.href = match[0];
+                link.textContent = match[0];
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+
+                message.appendChild(link);
+
+                lastIndex = match.index + match[0].length;
+              }
+
+              const afterText = text.slice(lastIndex);
+
+              if (afterText) {
+                message.appendChild(document.createTextNode(afterText));
+              }
 
               li.append(header, message);
 
