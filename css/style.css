@@ -494,7 +494,7 @@ a {
   padding: 8px 14px;
   border: 0;
   border-radius: 999px;
-  background: #ffd000;
+  background: #eeff00;
   color: #000;
   cursor: pointer;
   font-weight: 700;
@@ -568,8 +568,8 @@ a {
 }
 
 .board-list .like-btn.liked {
-  color: #ffd000;
-  border-color: rgba(255, 208, 0, 0.45);
+  color: #eeff00;
+  border-color: #eeff00;
   font-weight: 700;
 }
 
@@ -585,7 +585,7 @@ a {
 }
 
 .message a {
-  color: #ffdb3b;
+  color: #eeff00;
   text-decoration: underline;
   overflow-wrap: anywhere;
 }
