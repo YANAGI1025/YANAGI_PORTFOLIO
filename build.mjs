@@ -4,7 +4,7 @@ import JavaScriptObfuscator from 'javascript-obfuscator';
 
 const root = process.cwd();
 const dist = path.join(root, 'dist');
-const source = path.join(root, 'src');
+const source = path.join(root, 'js');
 
 fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(path.join(dist, 'js'), { recursive: true });
