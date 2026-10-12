@@ -287,20 +287,43 @@ a {
   outline: none;
 }
 
+
+
 .thumb {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #081018;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #081018;
 }
 
-.thumb img {
-    width: 100%;
-    height: auto;
-    display: block;
+.thumb img.thumb-bg {
+  position: absolute;
+  inset: -15px;
+  width: calc(100% + 30px);
+  height: calc(100% + 30px);
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  filter: blur(14px);
+  opacity: 0.8;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.thumb img.thumb-main {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .card-body {
@@ -1185,25 +1208,26 @@ footer {
 }
 
 .game-detail-events {
-  padding-top: 4px;
+  margin-top: 12px;
+  padding: 12px 14px;
+}
+
+.game-detail-events .game-detail-label {
+  margin-bottom: 8px;
+  letter-spacing: 0.12em;
 }
 
 .game-detail-events ul {
   margin: 0;
-
-  padding: 0;
-
-  list-style: none;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .game-detail-events li {
-  position: relative;
-
-  padding: 10px 0 10px 18px;
-
-  color: #d0dce5;
-
-  line-height: 1.65;
+  margin: 0;
+  line-height: 1.5;
 }
 
 .game-detail-events li::before {
@@ -1387,3 +1411,22 @@ footer {
     margin-top: -40px;
   }
 }
+
+
+.game-play-button:not(.game-trailer-button) {
+  border-color: rgba(29, 155, 240, 0.5);
+  background: rgba(29, 155, 240, 0.12);
+  color: #bfe6ff;
+}
+.game-play-button:not(.game-trailer-button):hover {
+  background: rgba(29, 155, 240, 0.28);
+}
+.game-play-button.game-trailer-button {
+  border-color: rgba(255, 65, 85, 0.55);
+  background: rgba(255, 65, 85, 0.12);
+  color: #ff9da8;
+}
+.game-play-button.game-trailer-button:hover {
+  background: rgba(255, 65, 85, 0.28);
+}
+

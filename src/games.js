@@ -1,15 +1,31 @@
 const GAME_PROJECTS = [
       {
+        title: 'E:den',
+        image: 'img/Game/eden.png',
+        period: '2026.09 ~ 開発中',
+        genre: 'HD2DホラーADV',
+        engine: 'Unity',
+        description: '「当たり前の日常が、少しずつ壊れていく」',
+        role: 'プログラム',
+        team: 'CEREAL : 3',
+        links: [
+          { label: 'ゲームをプレイ', url: '#' ,enabled: false},
+        ],
+        trailer: 'https://youtu.be/4ekDdK09I8I?si=jLq0w8k6kdtJmgKG'
+      },
+      {
         title: 'Born Bone Boom!',
         image: 'img/Game/bbb.png',
-        period: '2026.08',
+        period: '2026.08 ~ 開発中',
         genre: 'パーティー',
         engine: 'Unity (PUN2)',
         description: '頭・胴・おケツのホネを組み合わせ、\nヘンテコな生き物を復元する対戦パーティーゲーム！！！',
         role: 'プログラム',
+        team: 'RAUGUGU',
         links: [
-          { label: 'ゲームをプレイ', url: '#' ,enabled: false}
-        ]
+          { label: 'ゲームをプレイ', url: '#' ,enabled: false},
+        ],
+        trailer: 'https://youtu.be/pI6e8p7UPJw?si=7TKttfxCyDW1YWo0'
       },
       {
         title: 'キャンバスぬりつぶしろ！',
@@ -19,10 +35,11 @@ const GAME_PROJECTS = [
         engine: 'Unity',
         description: 'ある日、真っ白になってしまった世界。\n目の前に広がる白い世界を自分色に塗りつぶ”しろ”！！！',
         role: '企画・プログラム',
+        team: 'RAUGUGU',
+        events: ['unity1week #36 『しろ』参加作品'],
         links: [
           { label: 'ゲームをプレイ', url: 'https://unityroom.com/games/nuritsubushiro' }
         ],
-        trailer: ''
       },
       {
         title: 'らーめん裏飯家',
@@ -32,6 +49,8 @@ const GAME_PROJECTS = [
         engine: 'Unity',
         description: '特に怪しいわけでもないラーメン店に迷い込んだあなた。\n注文は“正しく”、“速く”組み立てろ！！！',
         role: '大将・企画・プログラム・デザイン',
+        team: 'RAUGUGU',
+        events: ['unity1week #35 『うら』参加作品', '32回 3分ゲーコンテスト 2位入賞'],
         links: [
           { label: 'ゲームをプレイ', url: 'https://unityroom.com/games/urameshiya' }
         ]
@@ -43,20 +62,27 @@ const GAME_PROJECTS = [
     const gameDetailClose = document.getElementById('gameDetailClose');
     const gameDetailImage = document.getElementById('gameDetailImage');
     const gameDetailBgImage = document.getElementById('gameDetailBgImage');
+
     const gameDetailTitle = document.getElementById('gameDetailTitle');
     const gameDetailPeriod = document.getElementById('gameDetailPeriod');
-    const gameDetailMeta = document.getElementById('gameDetailMeta');
-    const gameDetailDescription = document.getElementById('gameDetailDescription');
-    const gameDetailRole = document.getElementById('gameDetailRole');
-    const gameDetailLinks = document.getElementById('gameDetailLinks');
     const gameDetailKicker = document.getElementById('gameDetailKicker');
     const gameDetailTags = document.getElementById('gameDetailTags');
+
+    const gameDetailDescription = document.getElementById('gameDetailDescription');
+    const gameDetailRole = document.getElementById('gameDetailRole');
+    const gameDetailEngine = document.getElementById('gameDetailEngine');
+    const gameDetailGenre = document.getElementById('gameDetailGenre');
+    const gameDetailEvents = document.getElementById('gameDetailEvents');
+    const gameDetailPlay = document.getElementById('gameDetailPlay');
+    const gameDetailTeam = document.getElementById('gameDetailTeam');
 
 function openGameDetail(game) {
   gameDetailBgImage.src = game.image;
   gameDetailImage.src = game.image;
   gameDetailBgImage.alt = '';
   gameDetailImage.alt = game.title;
+
+  gameDetailTeam.textContent = game.team || '—';
 
   gameDetailKicker.textContent =
     game.period || 'GAME PROJECT';
@@ -103,12 +129,6 @@ if (gameDetailTags) {
     label.innerHTML =
       '<span>EVENTS</span><i></i>';
 
-    const heading =
-      document.createElement('h3');
-
-    heading.textContent =
-      '出展・イベント';
-
     const list =
       document.createElement('ul');
 
@@ -124,7 +144,6 @@ if (gameDetailTags) {
 
     gameDetailEvents.append(
       label,
-      heading,
       list
     );
   }

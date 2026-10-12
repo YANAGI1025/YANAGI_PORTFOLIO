@@ -61,8 +61,12 @@ let filtered = ARTWORKS.slice();
         card.tabIndex = 0;
 
         card.innerHTML = `
-          <div class="thumb">
-            <img loading="lazy" src="${art.img}" alt="${art.title}">
+
+<div class="thumb">
+  <img class="thumb-bg" src="${art.img}" alt="" aria-hidden="true">
+  <img class="thumb-main" loading="lazy" src="${art.img}" alt="${art.title}">
+</div>
+
           </div>
           <div class="card-body">
             <div class="card-header-line">
