@@ -1305,6 +1305,16 @@ footer {
   transform: translateY(-2px);
 }
 
+.game-trailer-button {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e6eef6;
+}
+
+.game-trailer-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .game-play-button.disabled {
   opacity: 0.35;
   filter: grayscale(1);
