@@ -36,7 +36,7 @@ const GAME_PROJECTS = [
         description: 'ある日、真っ白になってしまった世界。\n目の前に広がる白い世界を自分色に塗りつぶ”しろ”！！！',
         role: '企画・プログラム',
         team: 'RAUGUGU',
-        events: ['unity1week #36 『しろ』参加作品'],
+        events: ['unity1week #36 『しろ』　参加作品'],
         links: [
           { label: 'ゲームをプレイ', url: 'https://unityroom.com/games/nuritsubushiro' }
         ],
@@ -50,7 +50,7 @@ const GAME_PROJECTS = [
         description: '特に怪しいわけでもないラーメン店に迷い込んだあなた。\n注文は“正しく”、“速く”組み立てろ！！！',
         role: '大将・企画・プログラム・デザイン',
         team: 'RAUGUGU',
-        events: ['unity1week #35 『うら』参加作品', '32回 3分ゲーコンテスト 2位入賞'],
+        events: ['unity1week #35 『うら』　参加作品', '32回 3分ゲーコンテスト　2位入賞'],
         links: [
           { label: 'ゲームをプレイ', url: 'https://unityroom.com/games/urameshiya' }
         ]
